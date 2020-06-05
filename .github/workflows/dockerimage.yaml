@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on: 
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      env:
+        HELM_VERSION: v2.0.0
+        KUBECTL_VERSION: v1.13.10
+        TERRAFORM_VERSION: 0.12.26
+      with:
+        name: tomso/docker-helm-kubectl-terraform
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: true
+        cache: true
+        buildargs: HELM_VERSION,KUBECTL_VERSION,TERRAFORM_VERSION
+        tags: v2.0.0__v1.13.10__0.12.26
+    - name: Update Docker hub description
+      uses: peter-evans/dockerhub-description@v2.0.0
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKERHUB_REPOSITORY: tomso/docker-helm-kubectl-terraform
