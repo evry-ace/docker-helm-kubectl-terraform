@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -ex
+
+NAME="$1"
+
+TERRAFORM_VERSION=0.14.4
+
+HELM_VERSION=v3.5.0
+KUBELOGIN_VERSION=v0.0.7
+KUBECTL_VERSION=v1.18.10
+KUBESEAL_VERSION=v0.13.1
+CUE_VERSION=0.3.0-beta.1
+
+docker build \
+    --build-arg HELM_VERSION=$HELM_VERSION \
+    --build-arg KUBELOGIN_VERSION=$KUBELOGIN_VERSION \
+    --build-arg KUBECTL_VERSION=$KUBECTL_VERSION \
+    --build-arg KUBESEAL_VERSION=$KUBESEAL_VERSION \
+    --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION \
+    --build-arg CUE_VERSION=$CUE_VERSION \
+    . -t evryace/util-image:$NAME
