@@ -23,11 +23,13 @@ rm kubelogin-linux-amd64.zip
 wget https://github.com/bitnami-labs/sealed-secrets/releases/download/${KUBESEAL_VERSION}/kubeseal-linux-amd64 -O kubeseal
 mv kubeseal /usr/local/bin
 chmod +x /usr/local/bin/kubeseal
-curl -LO https://github.com/cuelang/cue/releases/download/v${CUE_VERSION}/cue_${CUE_VERSION}_Linux_x86_64.tar.gz
 
+curl -LO https://github.com/cuelang/cue/releases/download/v${CUE_VERSION}/cue_${CUE_VERSION}_Linux_x86_64.tar.gz
 tar xvf cue_${CUE_VERSION}_Linux_x86_64.tar.gz
 mv cue /usr/bin
 rm cue_${CUE_VERSION}_Linux_x86_64.tar.gz && rm -rf doc
+
+curl -LO https://github.com/tektoncd/cli/releases/download/v${TKN_VERSION}/tektoncd-cli-${TKN_VERSION}_Linux-64bit.deb
 
 wget https://golang.org/dl/go1.15.7.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.15.7.linux-amd64.tar.gz

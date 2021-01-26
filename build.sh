@@ -10,7 +10,8 @@ HELM_VERSION=v3.5.0
 KUBELOGIN_VERSION=v0.0.7
 KUBECTL_VERSION=v1.18.10
 KUBESEAL_VERSION=v0.13.1
-CUE_VERSION=0.3.0-beta.1
+CUE_VERSION=0.3.0-beta.3
+TKN_VERSION=0.15.0
 
 docker build \
     --build-arg HELM_VERSION=$HELM_VERSION \
@@ -19,4 +20,5 @@ docker build \
     --build-arg KUBESEAL_VERSION=$KUBESEAL_VERSION \
     --build-arg TERRAFORM_VERSION=$TERRAFORM_VERSION \
     --build-arg CUE_VERSION=$CUE_VERSION \
+    --build-arg TKN_VERSION=$TKN_VERSION \
     . -t evryace/util-image:$NAME
